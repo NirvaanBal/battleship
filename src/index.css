@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+html {
+  font-family: 'Radio Canada', sans-serif;
+}
