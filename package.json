@@ -1,0 +1,19 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NirvaanBal/battleship.git"
+  },
+  "author": "Nirvaan Bal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NirvaanBal/battleship/issues"
+  },
+  "homepage": "https://github.com/NirvaanBal/battleship#readme"
+}
