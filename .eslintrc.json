@@ -12,7 +12,8 @@
         "sourceType": "module"
     },
     "rules": {
-        "no-console": "off",
-        "linebreak-style": 0
+        "linebreak-style": 0,
+        "no-unneeded-ternary": "off",
+        "no-param-reassign": "off"
     }
 }
