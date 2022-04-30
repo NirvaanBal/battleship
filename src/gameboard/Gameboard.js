@@ -1,4 +1,4 @@
-// import Ship from '../ship/Ship';
+import updateRowToNumeral from '../utils/updateRowToNumeral';
 
 const Gameboard = () => {
   const grid = [
@@ -15,11 +15,10 @@ const Gameboard = () => {
   ]; // prettier-ignore
 
   // const flow = ['a', 'd'][Math.floor(Math.random() * 2)];
+  // let placeAt = Math.floor(Math.random() * grid.length);
 
   const place = (ship, direction, placeAt) => {
     const size = ship.ship.length;
-
-    // let placeAt = Math.floor(Math.random() * grid.length);
 
     if (direction === 'a') {
       if (
@@ -43,7 +42,7 @@ const Gameboard = () => {
             placesCache.forEach((placeCache) => grid[placeCache] === '');
             placesCache = [];
           }
-          // place(size, direction, Math.floor(Math.random() * grid.length));
+
           return false;
         }
         grid[placeAt] = `${ship.id}-${i}-${ship.ship[i]}`;
@@ -68,7 +67,7 @@ const Gameboard = () => {
             placesCache.forEach((placeCache) => grid[placeCache] === '');
             placesCache = [];
           }
-          // place(size, direction, Math.floor(Math.random() * grid.length));
+
           return false;
         }
         if (i === 0) grid[placeAt] = `${ship.id}-${i}-${ship.ship[i]}`;
@@ -96,33 +95,6 @@ const Gameboard = () => {
 
   //   return true;
   // };
-
-  const updateRowToNumeral = (numeral) => {
-    switch (numeral) {
-      case 'a':
-        return 0;
-      case 'b':
-        return 1;
-      case 'c':
-        return 2;
-      case 'd':
-        return 3;
-      case 'e':
-        return 4;
-      case 'f':
-        return 5;
-      case 'g':
-        return 6;
-      case 'h':
-        return 7;
-      case 'i':
-        return 8;
-      case 'j':
-        return 9;
-      default:
-        return false;
-    }
-  };
 
   const receiveAttack = (row, col) => {
     if (updateRowToNumeral(row) === false || col > 10 || col < 1) return false;

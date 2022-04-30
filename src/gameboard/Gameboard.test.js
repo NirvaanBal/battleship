@@ -2,13 +2,12 @@ import Gameboard from './Gameboard';
 import Ship from '../ship/Ship';
 
 const destroyer = Ship(3);
-const submarine = Ship(4);
 
-describe('GAMEBOARD', () => {
-  test.skip('invalid placement across', () => {
+describe.skip('GAMEBOARD', () => {
+  test('invalid placement across', () => {
     expect(Gameboard().place(Ship(5), 'a', 17)).toBeFalsy();
   });
-  test.skip('invalid placemnet down', () => {
+  test('invalid placemnet down', () => {
     expect(Gameboard().place(destroyer, 'd', 90)).toBeFalsy();
   });
   test('place a ship across', () => {
@@ -39,7 +38,7 @@ describe('GAMEBOARD', () => {
       '', '', '', '', '', '', '', '', '', '',
     ]); // prettier-ignore
   });
-  test.skip('attack a ship: miss', () => {
+  test('attack a ship: miss', () => {
     expect(Gameboard().receiveAttack('a', 4)).toEqual({
       coords: '03',
       shipId: null,
