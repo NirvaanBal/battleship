@@ -1,19 +1,22 @@
 import Ship from './Ship';
 
-describe.skip('SHIP', () => {
+const destroyer = Ship();
+const destroyerId = destroyer.id;
+
+describe('SHIP', () => {
   test('hit the ship', () => {
-    expect(Ship().hit(1)).toEqual(['x', '']);
+    expect(destroyer.hit(1, destroyerId)).toEqual(['x', '']);
   });
 
   test('ship not sunken', () => {
-    expect(Ship().isSunk()).toBe(false);
+    expect(destroyer.isSunk()).toBe(false);
   });
 
   test('destroy the ship', () => {
-    expect(Ship().hit(2)).toEqual(['x', 'x']);
+    expect(destroyer.hit(2, destroyerId)).toEqual(['x', 'x']);
   });
 
   test('ship sunken', () => {
-    expect(Ship().isSunk()).toBe(true);
+    expect(destroyer.isSunk()).toBe(true);
   });
 });

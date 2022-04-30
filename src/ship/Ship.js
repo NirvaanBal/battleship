@@ -1,8 +1,12 @@
 const Ship = (length = 2) => {
   let hitCounter = 0;
+
+  const id = new Date().toISOString();
+
   const ship = new Array(length).fill('');
 
-  const hit = (pos) => {
+  const hit = (pos, shipId) => {
+    if (shipId !== id) return false;
     hitCounter += 1;
     ship[pos - 1] = 'x';
     return ship;
@@ -10,7 +14,12 @@ const Ship = (length = 2) => {
 
   const isSunk = () => (hitCounter === length ? true : false);
 
-  return { ship, hit, isSunk };
+  return {
+    id,
+    ship,
+    hit,
+    isSunk,
+  };
 };
 
 export default Ship;
