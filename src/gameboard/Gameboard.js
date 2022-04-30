@@ -16,8 +16,6 @@ const Gameboard = () => {
 
   // const flow = ['a', 'd'][Math.floor(Math.random() * 2)];
 
-  // const canPlaceHere = (location) => (location !== '' ? false : true);
-
   const place = (size, direction, placeAt) => {
     const ship = Ship(size);
     const shipSize = ship.ship.length;
@@ -38,7 +36,10 @@ const Gameboard = () => {
       ) {
         return false;
       }
-      for (let i = placeAt; i < placeAt + shipSize; i += 1) grid[i] = '-';
+      for (let i = placeAt; i < placeAt + shipSize; i += 1) {
+        if (grid[i] === '') grid[i] = '-';
+        else return false;
+      }
     }
 
     if (direction === 'd') {
@@ -51,6 +52,7 @@ const Gameboard = () => {
         return false;
       }
       for (let i = 0; i < shipSize; i += 1) {
+        if (grid[i] !== '') return false;
         if (i === 0) grid[placeAt] = '|';
         else grid[placeAt] = '|';
         placeAt += 10;
