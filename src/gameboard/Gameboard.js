@@ -25,14 +25,31 @@ const Gameboard = () => {
     // let placeAt = Math.floor(Math.random() * grid.length);
 
     if (direction === 'a') {
-      // if (placeAt % 10 === 9) placeAt -= shipSize - 1;
-      for (let i = placeAt; i < placeAt + shipSize; i += 1) {
-        grid[i] = '-';
+      if (
+        (placeAt % 10 === 9 && size === 2) ||
+        ((placeAt % 10 === 9 || placeAt % 10 === 8) && size === 3) ||
+        ((placeAt % 10 === 9 || placeAt % 10 === 8 || placeAt % 10 === 7) &&
+          size === 4) ||
+        ((placeAt % 10 === 9 ||
+          placeAt % 10 === 8 ||
+          placeAt % 10 === 7 ||
+          placeAt % 10 === 6) &&
+          size === 5)
+      ) {
+        return false;
       }
+      for (let i = placeAt; i < placeAt + shipSize; i += 1) grid[i] = '-';
     }
 
     if (direction === 'd') {
-      // if (placeAt >= 90) placeAt -= shipSize - 1;
+      if (
+        placeAt >= 90 ||
+        (placeAt >= 80 && size === 3) ||
+        (placeAt >= 70 && size === 4) ||
+        (placeAt >= 60 && size === 5)
+      ) {
+        return false;
+      }
       for (let i = 0; i < shipSize; i += 1) {
         if (i === 0) grid[placeAt] = '|';
         else grid[placeAt] = '|';

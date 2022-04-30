@@ -3,9 +3,9 @@ import Ship from '../ship/Ship';
 
 describe('GAMEBOARD', () => {
   test('place a ship across', () => {
-    expect(Gameboard().place(3, 'a', 4)).toEqual([
-      '', '', '', '', '-', '-', '-', '', '', '',
+    expect(Gameboard().place(3, 'a', 16)).toEqual([
       '', '', '', '', '', '', '', '', '', '',
+      '', '', '', '', '', '', '-', '-', '-', '',
       '', '', '', '', '', '', '', '', '', '',
       '', '', '', '', '', '', '', '', '', '',
       '', '', '', '', '', '', '', '', '', '',
@@ -29,5 +29,11 @@ describe('GAMEBOARD', () => {
       '', '', '', '', '', '', '', '', '', '',
       '', '', '', '', '', '', '', '', '', '',
     ]); // prettier-ignore
+  });
+  test('invalid placement across', () => {
+    expect(Gameboard().place(5, 'a', 17)).toBeFalsy();
+  });
+  test('invalid placemnet down', () => {
+    expect(Gameboard().place(3, 'd', 90)).toBeFalsy();
   });
 });
