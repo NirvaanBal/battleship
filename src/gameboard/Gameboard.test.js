@@ -10,7 +10,7 @@ describe('GAMEBOARD', () => {
   test('invalid placemnet down', () => {
     expect(Gameboard().place(destroyer, 'd', 90)).toBeFalsy();
   });
-  test.only('place a ship across', () => {
+  test('place a ship across', () => {
     expect(Gameboard().place(destroyer, 'a', 16)).toEqual([
       '', '', '', '', '', '', '', '', '', '',
       '', '', '', '', '', '', `${destroyer.id}-${destroyer.ship[0]}`, `${destroyer.id}-${destroyer.ship[1]}`, `${destroyer.id}-${destroyer.ship[2]}`, '',
@@ -37,5 +37,12 @@ describe('GAMEBOARD', () => {
       '', '', '', '', '', '', '', '', '', '',
       '', '', '', '', '', '', '', '', '', '',
     ]); // prettier-ignore
+  });
+  test.only('attack a ship: miss', () => {
+    expect(Gameboard().receiveAttack('a', 4)).toEqual({
+      coords: '03',
+      shipId: null,
+      shipHitIndex: null,
+    });
   });
 });

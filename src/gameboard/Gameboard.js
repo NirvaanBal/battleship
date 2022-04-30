@@ -1,3 +1,5 @@
+// import Ship from '../ship/Ship';
+
 const Gameboard = () => {
   const grid = [
     '', '', '', '', '', '', '', '', '', '',
@@ -40,7 +42,7 @@ const Gameboard = () => {
       // }
       for (let i = 0; i < size; i += 1) {
         if (grid[i] !== '') return false;
-        grid[placeAt] = `${ship.id}-${ship.ship[i]}`;
+        grid[placeAt] = `${ship.id}-${i}-${ship.ship[i]}`;
         placeAt += 1;
       }
     }
@@ -56,8 +58,8 @@ const Gameboard = () => {
       }
       for (let i = 0; i < size; i += 1) {
         if (grid[i] !== '') return false;
-        if (i === 0) grid[placeAt] = `${ship.id}-${ship.ship[i]}`;
-        else grid[placeAt] = `${ship.id}-${ship.ship[i]}`;
+        if (i === 0) grid[placeAt] = `${ship.id}-${i}-${ship.ship[i]}`;
+        else grid[placeAt] = `${ship.id}-${i}-${ship.ship[i]}`;
         placeAt += 10;
       }
     }
@@ -65,49 +67,52 @@ const Gameboard = () => {
     return grid;
   };
 
-  // const updateRowToLetter = (numeral) => {
-  //   switch (numeral) {
-  //     case 'a':
-  //       return 0;
-  //     case 'b':
-  //       return 1;
-  //     case 'c':
-  //       return 2;
-  //     case 'd':
-  //       return 3;
-  //     case 'e':
-  //       return 4;
-  //     case 'f':
-  //       return 5;
-  //     case 'g':
-  //       return 6;
-  //     case 'h':
-  //       return 7;
-  //     case 'i':
-  //       return 8;
-  //     case 'j':
-  //       return 9;
-  //     default:
-  //       return false;
-  //   }
-  // };
+  const updateRowToNumeral = (numeral) => {
+    switch (numeral) {
+      case 'a':
+        return 0;
+      case 'b':
+        return 1;
+      case 'c':
+        return 2;
+      case 'd':
+        return 3;
+      case 'e':
+        return 4;
+      case 'f':
+        return 5;
+      case 'g':
+        return 6;
+      case 'h':
+        return 7;
+      case 'i':
+        return 8;
+      case 'j':
+        return 9;
+      default:
+        return false;
+    }
+  };
 
-  // const receiveAttack = (row, col) => {
-  //   if (!updateRowToLetter(row) || col > 10 || col < 1) return false;
-  //   row = updateRowToLetter(row);
-  //   col -= 1;
-  //   let hit = false;
+  const receiveAttack = (row, col) => {
+    if (updateRowToNumeral(row) === false || col > 10 || col < 1) return false;
+    row = updateRowToNumeral(row);
+    col -= 1;
+    let shipId = null;
+    let shipHitIndex = null;
 
-  //   if (grid[`${row}${col}`] !== '') {
-  //     grid[`${row}${col}`] = 'x';
-  //     hit = true;
-  //   }
+    if (grid[+`${row}${col}`] !== '') {
+      [shipId, shipHitIndex] = grid[+`${row}${col}`].split('-');
+    }
 
-  //   grid[`${row}${col}`] = 'o';
-  //   return { coords: `${row}${col}`, hit };
-  // };
+    return {
+      coords: `${row}${col}`,
+      shipId,
+      shipHitIndex: shipHitIndex ? +shipHitIndex + 1 : null,
+    };
+  };
 
-  return { grid, place };
+  return { grid, place, receiveAttack };
 };
 
 export default Gameboard;
