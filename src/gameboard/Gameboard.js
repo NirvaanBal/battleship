@@ -35,14 +35,19 @@ const Gameboard = () => {
       ) {
         return false;
       }
-      // for (let i = placeAt; i < placeAt + size; i += 1) {
-      //   if (grid[i] === '') {
-      //     grid[i] = `${ship.id} ${ship.ship[0]}`;
-      //   } else return false;
-      // }
+
       for (let i = 0; i < size; i += 1) {
-        if (grid[i] !== '') return false;
+        let placesCache = [];
+        if (grid[i] !== '') {
+          if (placesCache.length > 0) {
+            placesCache.forEach((placeCache) => grid[placeCache] === '');
+            placesCache = [];
+          }
+          // place(size, direction, Math.floor(Math.random() * grid.length));
+          return false;
+        }
         grid[placeAt] = `${ship.id}-${i}-${ship.ship[i]}`;
+        placesCache.push(placeAt);
         placeAt += 1;
       }
     }
@@ -57,15 +62,40 @@ const Gameboard = () => {
         return false;
       }
       for (let i = 0; i < size; i += 1) {
-        if (grid[i] !== '') return false;
+        let placesCache = [];
+        if (grid[i] !== '') {
+          if (placesCache.length > 0) {
+            placesCache.forEach((placeCache) => grid[placeCache] === '');
+            placesCache = [];
+          }
+          // place(size, direction, Math.floor(Math.random() * grid.length));
+          return false;
+        }
         if (i === 0) grid[placeAt] = `${ship.id}-${i}-${ship.ship[i]}`;
         else grid[placeAt] = `${ship.id}-${i}-${ship.ship[i]}`;
+        placesCache.push(placeAt);
         placeAt += 10;
       }
     }
 
     return grid;
   };
+
+  // const randomlyPlaceShips = () => {
+  //   [2, 3, 3, 4, 5].forEach((size) => {
+  //     let flow = ['a', 'd'][Math.floor(Math.random() * 2)];
+  //     let location = Math.floor(Math.random() * grid.length);
+
+  //     let placed = false;
+  //     while (placed === false) {
+  //       placed = place(Ship(size), flow, location);
+  //       flow = ['a', 'd'][Math.floor(Math.random() * 2)];
+  //       location = Math.floor(Math.random() * grid.length);
+  //     }
+  //   });
+
+  //   return true;
+  // };
 
   const updateRowToNumeral = (numeral) => {
     switch (numeral) {
@@ -112,7 +142,23 @@ const Gameboard = () => {
     };
   };
 
-  return { grid, place, receiveAttack };
+  const allSunk = () => {
+    let counter = 0;
+    grid.forEach((location) => {
+      if (location.split('-')[2] === 'x') counter += 1;
+    });
+
+    if (counter === 17) return true;
+    return false;
+  };
+
+  return {
+    grid,
+    place,
+    // randomlyPlaceShips,
+    receiveAttack,
+    allSunk,
+  };
 };
 
 export default Gameboard;
