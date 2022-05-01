@@ -17,6 +17,8 @@ const Gameboard = () => {
   // const flow = ['a', 'd'][Math.floor(Math.random() * 2)];
   // let placeAt = Math.floor(Math.random() * grid.length);
 
+  const ships = [];
+
   const place = (ship, direction, placeAt) => {
     const size = ship.ship.length;
     let placesCache = [];
@@ -79,6 +81,7 @@ const Gameboard = () => {
       }
     }
 
+    ships.push(ship);
     return grid;
   };
 
@@ -138,6 +141,7 @@ const Gameboard = () => {
     // randomlyPlaceShips,
     receiveAttack,
     allSunk,
+    ships,
   };
 };
 
