@@ -1,6 +1,7 @@
 import './index.css';
 import Game from './game/Game';
 import gameboardHTML from './dom/gameboardHTML';
+import Player from './player/Player';
 
 const root = document.getElementById('root');
 
@@ -28,6 +29,7 @@ const boards = document.createElement('div');
 boards.classList.add('boards');
 const computerBoard = Game().gameboardC;
 const myBoard = Game().gameboardH;
+const computer = Player('computer');
 
 boards.insertAdjacentHTML(
   'beforeend',
@@ -42,17 +44,27 @@ ships.forEach((ship, index) => {
     const row = e.target.parentElement.firstChild.textContent.toLowerCase();
     const col = (index % 10) + 1;
     const action = computerBoard.receiveAttack(row, col);
+
+    if (!action) return;
+
     if (action.shipId) {
-      e.target.textContent = 'x';
       const targetShip = computerBoard.ships.find(
         (s) => s.id === +action.shipId
       );
       targetShip.hit(action.shipHitIndex, action.shipId);
-      // myBoard.grid[+Game().computer.move()] = 'o';
+
+      e.target.textContent = targetShip.ship[action.shipHitIndex - 1];
+
+      if (computerBoard.allSunk()) console.log('WINNER');
     } else {
       e.target.textContent = 'o';
-      // console.log(Game().computer.move());
     }
+
+    const coords = computer.move();
+    myBoard.receiveAttack(coords.row, coords.col);
+    boards.lastChild.remove();
+    boards.insertAdjacentHTML('beforeend', gameboardHTML(myBoard.grid));
+    if (myBoard.allSunk()) console.log('LOSER');
   });
 });
 

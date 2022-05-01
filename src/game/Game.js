@@ -1,10 +1,7 @@
 import Gameboard from '../gameboard/Gameboard';
-import Player from '../player/Player';
 import Ship from '../ship/Ship';
 
 const Game = () => {
-  const computer = Player('computer');
-
   const gameboardC = Gameboard();
   gameboardC.place(Ship(2), 'd', 19); // submarine
   gameboardC.place(Ship(3), 'a', 81); // destroyer
@@ -19,7 +16,7 @@ const Game = () => {
   gameboardH.place(Ship(2), 'd', 88);
   gameboardH.place(Ship(3), 'a', 41); // destroyer
 
-  return { gameboardC, gameboardH, computer };
+  return { gameboardC, gameboardH };
 };
 
 export default Game;

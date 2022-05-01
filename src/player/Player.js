@@ -1,17 +1,28 @@
 const Player = (player = 'human') => {
-  const cachedLocations = [];
+  let availableLocations = [];
+
+  ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'].forEach((row) => {
+    for (let i = 0; i < 10; i += 1) {
+      availableLocations.push(`${row}${i + 1}`);
+    }
+  });
 
   const move = () => {
-    const row = Math.floor(Math.random() * 10);
-    const col = Math.floor(Math.random() * 10);
+    const locsLen = availableLocations.length;
+    const locationUsed =
+      availableLocations[Math.floor(Math.random() * locsLen)];
+    const row = locationUsed[0];
+    let col = locationUsed[1];
+    if (locationUsed.length === 3) col += locationUsed[2];
 
-    if (cachedLocations.includes(`${row}${col}`)) return false;
+    availableLocations = [...availableLocations].filter(
+      (loc) => loc !== locationUsed
+    );
 
-    cachedLocations.push(`${row}${col}`);
-    return `${row}${col}`;
+    return { row, col };
   };
 
-  return { move, cachedLocations, player };
+  return { move, player };
 };
 
 export default Player;
