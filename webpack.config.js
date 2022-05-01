@@ -12,9 +12,13 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   module: {
-    loaders: [
-      { exclude: ['node_modules'], loader: 'babel', test: /\.js?$/ },
-      { loader: 'style-loader!css-loader', test: /\.css$/i },
+    rules: [
+      {
+        test: /\.js?$/,
+        exclude: ['node_modules'],
+        loader: 'babel-loader',
+      },
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
     ],
   },
 };
