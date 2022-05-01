@@ -105,8 +105,14 @@ const Gameboard = () => {
     let shipId = null;
     let shipHitIndex = null;
 
+    if (grid[+`${row}${col}`] === 'o' || grid[+`${row}${col}`] === 'x') {
+      return false;
+    }
+
     if (grid[+`${row}${col}`] !== '') {
       [shipId, shipHitIndex] = grid[+`${row}${col}`].split('_');
+    } else {
+      grid[+`${row}${col}`] = 'o';
     }
 
     return {
