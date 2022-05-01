@@ -23,3 +23,14 @@ body {
   background-color: var(--base-color);
   color: var(--text-color);
 }
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  border: solid 1px var(--text-color);
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
