@@ -53,6 +53,10 @@ td {
   text-align: center;
 }
 
+td.occupied {
+  background-color: var(--text-color);
+}
+
 td:first-child {
   border: none;
 }
