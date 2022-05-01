@@ -43,12 +43,15 @@ ships.forEach((ship, index) => {
     const col = (index % 10) + 1;
     const action = computerBoard.receiveAttack(row, col);
     if (action.shipId) {
-      console.log(action);
       e.target.textContent = 'x';
-      console.log(Game().computer.move());
+      const targetShip = computerBoard.ships.find(
+        (s) => s.id === +action.shipId
+      );
+      targetShip.hit(action.shipHitIndex, action.shipId);
+      // myBoard.grid[+Game().computer.move()] = 'o';
     } else {
       e.target.textContent = 'o';
-      console.log(Game().computer.move());
+      // console.log(Game().computer.move());
     }
   });
 });
