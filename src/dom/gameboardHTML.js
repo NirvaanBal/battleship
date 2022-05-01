@@ -18,8 +18,9 @@ const gameboardHTML = (board) => {
   ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'].forEach((row, index) => {
     boardHTML += `<tr><td>${row.toUpperCase()}</td>`;
     for (let i = 0; i < 10; i += 1) {
-      if (board[+`${index}${i}`] === '') boardHTML += '<td></td>';
-      else boardHTML += '<td>*</td>';
+      if (board[+`${index}${i}`] === '') {
+        boardHTML += '<td class="grid-item"></td>';
+      } else boardHTML += '<td class="grid-item occupied">*</td>';
     }
     boardHTML += '</tr>';
   });
