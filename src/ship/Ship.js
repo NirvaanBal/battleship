@@ -6,7 +6,7 @@ const Ship = (length = 2) => {
   const ship = new Array(length).fill('');
 
   const hit = (pos, shipId) => {
-    if (shipId !== id) return false;
+    if (+shipId !== id) return false;
     hitCounter += 1;
     ship[pos - 1] = 'x';
     return ship;
