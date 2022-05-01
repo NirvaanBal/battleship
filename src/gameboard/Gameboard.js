@@ -105,15 +105,17 @@ const Gameboard = () => {
     if (updateRowToNumeral(row) === false || col > 10 || col < 1) return false;
     row = updateRowToNumeral(row);
     col -= 1;
-    let shipId = null;
-    let shipHitIndex = null;
 
     if (grid[+`${row}${col}`] === 'o' || grid[+`${row}${col}`] === 'x') {
       return false;
     }
 
+    let shipId = null;
+    let shipHitIndex = null;
+
     if (grid[+`${row}${col}`] !== '') {
       [shipId, shipHitIndex] = grid[+`${row}${col}`].split('_');
+      grid[+`${row}${col}`] = 'x';
     } else {
       grid[+`${row}${col}`] = 'o';
     }
@@ -128,7 +130,7 @@ const Gameboard = () => {
   const allSunk = () => {
     let counter = 0;
     grid.forEach((location) => {
-      if (location.split('_')[2] === 'x') counter += 1;
+      if (location === 'x') counter += 1;
     });
 
     if (counter === 17) return true;
