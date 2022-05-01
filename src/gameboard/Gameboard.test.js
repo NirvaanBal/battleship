@@ -13,7 +13,7 @@ describe.skip('GAMEBOARD', () => {
   test('place a ship across', () => {
     expect(Gameboard().place(destroyer, 'a', 16)).toEqual([
       '', '', '', '', '', '', '', '', '', '',
-      '', '', '', '', '', '', `${destroyer.id}-${0}-${destroyer.ship[0]}`, `${destroyer.id}-${1}-${destroyer.ship[1]}`, `${destroyer.id}-${2}-${destroyer.ship[2]}`, '',
+      '', '', '', '', '', '', `${destroyer.id}_${0}_${destroyer.ship[0]}`, `${destroyer.id}_${1}_${destroyer.ship[1]}`, `${destroyer.id}_${2}_${destroyer.ship[2]}`, '',
       '', '', '', '', '', '', '', '', '', '',
       '', '', '', '', '', '', '', '', '', '',
       '', '', '', '', '', '', '', '', '', '',
@@ -26,9 +26,9 @@ describe.skip('GAMEBOARD', () => {
   });
   test('place a ship down', () => {
     expect(Gameboard().place(destroyer, 'd', 4)).toEqual([
-      '', '', '', '', `${destroyer.id}-${0}-${destroyer.ship[0]}`, '', '', '', '', '',
-      '', '', '', '', `${destroyer.id}-${1}-${destroyer.ship[1]}`, '', '', '', '', '',
-      '', '', '', '', `${destroyer.id}-${2}-${destroyer.ship[2]}`, '', '', '', '', '',
+      '', '', '', '', `${destroyer.id}_${0}_${destroyer.ship[0]}`, '', '', '', '', '',
+      '', '', '', '', `${destroyer.id}_${1}_${destroyer.ship[1]}`, '', '', '', '', '',
+      '', '', '', '', `${destroyer.id}_${2}_${destroyer.ship[2]}`, '', '', '', '', '',
       '', '', '', '', '', '', '', '', '', '',
       '', '', '', '', '', '', '', '', '', '',
       '', '', '', '', '', '', '', '', '', '',

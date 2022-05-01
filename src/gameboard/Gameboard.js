@@ -46,7 +46,7 @@ const Gameboard = () => {
           }
           return false;
         }
-        grid[placeAt] = `${ship.id}-${i}-${ship.ship[i]}`;
+        grid[placeAt] = `${ship.id}_${i}_${ship.ship[i]}`;
         placesCache.push(placeAt);
         placeAt += 1;
       }
@@ -72,8 +72,8 @@ const Gameboard = () => {
 
           return false;
         }
-        if (i === 0) grid[placeAt] = `${ship.id}-${i}-${ship.ship[i]}`;
-        else grid[placeAt] = `${ship.id}-${i}-${ship.ship[i]}`;
+        if (i === 0) grid[placeAt] = `${ship.id}_${i}_${ship.ship[i]}`;
+        else grid[placeAt] = `${ship.id}_${i}_${ship.ship[i]}`;
         placesCache.push(placeAt);
         placeAt += 10;
       }
@@ -106,7 +106,7 @@ const Gameboard = () => {
     let shipHitIndex = null;
 
     if (grid[+`${row}${col}`] !== '') {
-      [shipId, shipHitIndex] = grid[+`${row}${col}`].split('-');
+      [shipId, shipHitIndex] = grid[+`${row}${col}`].split('_');
     }
 
     return {
