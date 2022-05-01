@@ -119,7 +119,7 @@ const Gameboard = () => {
   const allSunk = () => {
     let counter = 0;
     grid.forEach((location) => {
-      if (location.split('-')[2] === 'x') counter += 1;
+      if (location.split('_')[2] === 'x') counter += 1;
     });
 
     if (counter === 17) return true;
