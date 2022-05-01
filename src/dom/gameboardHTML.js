@@ -21,9 +21,10 @@ const gameboardHTML = (board, player = 'human') => {
       if (board[+`${index}${i}`] === '') {
         boardHTML += `<td class="grid-item" data-player="${player}"></td>`;
       } else {
-        const [shipId, shipHitIndex, shipValueAtThisLocation] =
-          board[+`${index}${i}`].split('_');
-        boardHTML += `<td class="grid-item ${player}" data-player="${player}" data-id="${shipId}" data-hit="${shipHitIndex}">${shipValueAtThisLocation}</td>`;
+        const [shipId, shipHitIndex] = board[+`${index}${i}`].split('_');
+        boardHTML += `<td class="grid-item ${player}" data-player="${player}" data-id="${shipId}" data-hit="${shipHitIndex}">${
+          board[+`${index}${i}`].length === 1 ? board[+`${index}${i}`] : ''
+        }</td>`;
       }
     }
     boardHTML += '</tr>';
