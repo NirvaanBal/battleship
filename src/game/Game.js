@@ -7,18 +7,18 @@ const Game = () => {
   // const computer = Player('computer');
 
   const gameboardC = Gameboard();
-  gameboardC.place(Ship(2), 'd', 19);
-  gameboardC.place(Ship(2), 'a', 81);
-  gameboardC.place(Ship(3), 'd', 32);
-  gameboardC.place(Ship(4), 'a', 65);
-  gameboardC.place(Ship(5), 'a', 12);
+  gameboardC.place(Ship(2), 'd', 19); // submarine
+  gameboardC.place(Ship(3), 'a', 81); // destroyer
+  gameboardC.place(Ship(3), 'd', 32); // cruiser
+  gameboardC.place(Ship(4), 'a', 65); // naval
+  gameboardC.place(Ship(5), 'a', 12); // carrier
 
   const gameboardH = Gameboard();
   gameboardH.place(Ship(5), 'd', 17);
   gameboardH.place(Ship(4), 'a', 72);
-  gameboardH.place(Ship(2), 'd', 2);
-  gameboardH.place(Ship(2), 'd', 87);
-  gameboardH.place(Ship(3), 'a', 41);
+  gameboardH.place(Ship(3), 'd', 2); // cruiser
+  gameboardH.place(Ship(2), 'd', 88);
+  gameboardH.place(Ship(3), 'a', 41); // destroyer
 
   return { gameboardC, gameboardH };
 };
