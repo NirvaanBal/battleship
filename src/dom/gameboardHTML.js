@@ -1,4 +1,4 @@
-const gameboardHTML = (board) => {
+const gameboardHTML = (board, player = 'human') => {
   let boardHTML = `
     <table>
       <tr>
@@ -19,8 +19,12 @@ const gameboardHTML = (board) => {
     boardHTML += `<tr><td>${row.toUpperCase()}</td>`;
     for (let i = 0; i < 10; i += 1) {
       if (board[+`${index}${i}`] === '') {
-        boardHTML += '<td class="grid-item"></td>';
-      } else boardHTML += '<td class="grid-item occupied">*</td>';
+        boardHTML += `<td class="grid-item" data-player="${player}"></td>`;
+      } else {
+        const [shipId, shipHitIndex, shipValueAtThisLocation] =
+          board[+`${index}${i}`].split('_');
+        boardHTML += `<td class="grid-item ${player}" data-player="${player}" data-id="${shipId}" data-hit="${shipHitIndex}">${shipValueAtThisLocation}</td>`;
+      }
     }
     boardHTML += '</tr>';
   });
