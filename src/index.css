@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Radio+Canada');
 
+:root {
+  --text-color: #ebebeb;
+  --base-color: #004e98;
+  --primary-color: #ff6700;
+  --secondary-color: #3a6ea5;
+  --tertiary-color: #c0c0c0;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,4 +17,9 @@
 
 html {
   font-family: 'Radio Canada', sans-serif;
+}
+
+body {
+  background-color: var(--base-color);
+  color: var(--text-color);
 }
