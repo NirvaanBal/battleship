@@ -19,6 +19,7 @@ const Gameboard = () => {
 
   const place = (ship, direction, placeAt) => {
     const size = ship.ship.length;
+    let placesCache = [];
 
     if (direction === 'a') {
       if (
@@ -36,13 +37,13 @@ const Gameboard = () => {
       }
 
       for (let i = 0; i < size; i += 1) {
-        let placesCache = [];
-        if (grid[i] !== '') {
+        if (grid[placeAt] !== '') {
           if (placesCache.length > 0) {
-            placesCache.forEach((placeCache) => grid[placeCache] === '');
+            placesCache.forEach((placeCache) => {
+              grid[placeCache] = '';
+            });
             placesCache = [];
           }
-
           return false;
         }
         grid[placeAt] = `${ship.id}-${i}-${ship.ship[i]}`;
@@ -61,10 +62,11 @@ const Gameboard = () => {
         return false;
       }
       for (let i = 0; i < size; i += 1) {
-        let placesCache = [];
-        if (grid[i] !== '') {
+        if (grid[placeAt] !== '') {
           if (placesCache.length > 0) {
-            placesCache.forEach((placeCache) => grid[placeCache] === '');
+            placesCache.forEach((placeCache) => {
+              grid[placeCache] = '';
+            });
             placesCache = [];
           }
 
