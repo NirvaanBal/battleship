@@ -53,8 +53,8 @@ td {
   text-align: center;
 }
 
-td.occupied {
-  background-color: var(--text-color);
+td.human {
+  border: solid 7px var(--text-color);
 }
 
 td:first-child {
