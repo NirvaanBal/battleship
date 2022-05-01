@@ -1,7 +1,7 @@
 const Ship = (length = 2) => {
   let hitCounter = 0;
 
-  const id = new Date().toISOString();
+  const id = Math.random();
 
   const ship = new Array(length).fill('');
 
