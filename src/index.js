@@ -29,8 +29,28 @@ boards.classList.add('boards');
 const computerBoard = Game().gameboardC;
 const myBoard = Game().gameboardH;
 
-boards.insertAdjacentHTML('beforeend', gameboardHTML(computerBoard.grid));
+boards.insertAdjacentHTML(
+  'beforeend',
+  gameboardHTML(computerBoard.grid, 'computer')
+);
 boards.insertAdjacentHTML('beforeend', gameboardHTML(myBoard.grid));
 content.appendChild(boards);
 
-// console.log('ਨਿਰਵਾਣ ਬੱਲ نِروَاݨ بلّ');
+const ships = document.querySelectorAll('.grid-item[data-player="computer"]');
+ships.forEach((ship, index) => {
+  ship.addEventListener('click', (e) => {
+    const row = e.target.parentElement.firstChild.textContent.toLowerCase();
+    const col = (index % 10) + 1;
+    const action = computerBoard.receiveAttack(row, col);
+    if (action.shipId) {
+      console.log(action);
+      e.target.textContent = 'x';
+      console.log(Game().computer.move());
+    } else {
+      e.target.textContent = 'o';
+      console.log(Game().computer.move());
+    }
+  });
+});
+
+// ਨਿਰਵਾਣ ਬੱਲ نِروَاݨ بلّ
