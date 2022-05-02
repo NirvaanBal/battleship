@@ -1,7 +1,8 @@
 import './index.css';
 import Game from './game/Game';
-import gameboardHTML from './dom/gameboardHTML';
 import Player from './player/Player';
+import gameboardHTML from './dom/gameboardHTML';
+import creatorHTML from './dom/creatorHTML';
 
 const root = document.getElementById('root');
 
@@ -104,4 +105,4 @@ init();
 
 button.addEventListener('click', init);
 
-// ਨਿਰਵਾਣ ਬੱਲ نِروَاݨ بلّ
+root.insertAdjacentHTML('beforeend', creatorHTML('ਨਿਰਵਾਣ ਬੱਲ نِروَاݨ بلّ'));
