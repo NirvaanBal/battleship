@@ -55,16 +55,22 @@ ships.forEach((ship, index) => {
 
       e.target.textContent = targetShip.ship[action.shipHitIndex - 1];
 
-      if (computerBoard.allSunk()) console.log('WINNER');
+      if (computerBoard.allSunk(computerBoard.ships)) console.log('WINNER');
     } else {
       e.target.textContent = 'o';
     }
 
     const coords = computer.move();
-    myBoard.receiveAttack(coords.row, coords.col);
+    const computerAction = myBoard.receiveAttack(coords.row, coords.col);
+    if (computerAction.shipId) {
+      const targetShip = myBoard.ships.find(
+        (s) => s.id === +computerAction.shipId
+      );
+      targetShip.hit(computerAction.shipHitIndex, computerAction.shipId);
+    }
     boards.lastChild.remove();
     boards.insertAdjacentHTML('beforeend', gameboardHTML(myBoard.grid));
-    if (myBoard.allSunk()) console.log('LOSER');
+    if (myBoard.allSunk(myBoard.ships)) console.log('LOSER');
   });
 });
 

@@ -127,13 +127,22 @@ const Gameboard = () => {
     };
   };
 
-  const allSunk = () => {
-    let counter = 0;
-    grid.forEach((location) => {
-      if (location === 'x') counter += 1;
-    });
+  // ships array vartana
+  const allSunk = (allShips) => {
+    // let counter = 0;
+    // grid.forEach((location) => {
+    //   if (location === 'x') counter += 1;
+    // });
 
-    if (counter === 17) return true;
+    // if (counter === 17) return true;
+    // return false;
+    const totalShips = ships.length;
+    let counter = 0;
+    allShips.forEach((ship) => {
+      if (ship.isSunk(ship.id)) counter += 1;
+    });
+    if (counter === totalShips) return true;
+
     return false;
   };
 
