@@ -9,7 +9,7 @@ describe.skip('SHIP', () => {
   });
 
   test('ship not sunken', () => {
-    expect(destroyer.isSunk()).toBe(false);
+    expect(destroyer.isSunk(destroyerId)).toBe(false);
   });
 
   test('destroy the ship', () => {
@@ -17,6 +17,6 @@ describe.skip('SHIP', () => {
   });
 
   test('ship sunken', () => {
-    expect(destroyer.isSunk()).toBe(true);
+    expect(destroyer.isSunk(destroyerId)).toBe(true);
   });
 });
