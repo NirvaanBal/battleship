@@ -23,5 +23,5 @@ An over-engineered version of a simple pen and paper game; Battleship.
 
 ## Bibliography
 
-- Project Idea - [The Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-battleship);
+- Project Idea - [The Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-battleship)
 - Font - [Major Mono Display](https://fonts.google.com)
