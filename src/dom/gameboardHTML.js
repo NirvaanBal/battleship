@@ -18,8 +18,10 @@ const gameboardHTML = (board, player = 'human') => {
   ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'].forEach((row, index) => {
     boardHTML += `<tr><td>${row.toUpperCase()}</td>`;
     for (let i = 0; i < 10; i += 1) {
-      if (board[+`${index}${i}`] === '') {
-        boardHTML += `<td class="grid-item" data-player="${player}"></td>`;
+      if (board[+`${index}${i}`] === '' || board[+`${index}${i}`] === 'o') {
+        boardHTML += `<td class="grid-item" data-player="${player}">${
+          board[+`${index}${i}`]
+        }</td>`;
       } else {
         const [shipId, shipHitIndex] = board[+`${index}${i}`].split('_');
         boardHTML += `<td class="grid-item ${player}" data-player="${player}" data-id="${shipId}" data-hit="${shipHitIndex}">${
