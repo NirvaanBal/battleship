@@ -27,52 +27,65 @@ root.appendChild(content);
  */
 const boards = document.createElement('div');
 boards.classList.add('boards');
-const computerBoard = Game().gameboardC;
-const myBoard = Game().gameboardH;
-const computer = Player('computer');
 
-boards.insertAdjacentHTML(
-  'beforeend',
-  gameboardHTML(computerBoard.grid, 'computer')
-);
-boards.insertAdjacentHTML('beforeend', gameboardHTML(myBoard.grid));
-content.appendChild(boards);
+const init = () => {
+  boards.innerHTML = '';
 
-const ships = document.querySelectorAll('.grid-item[data-player="computer"]');
-ships.forEach((ship, index) => {
-  ship.addEventListener('click', (e) => {
-    const row = e.target.parentElement.firstChild.textContent.toLowerCase();
-    const col = (index % 10) + 1;
-    const action = computerBoard.receiveAttack(row, col);
+  const computerBoard = Game().gameboardC;
+  const myBoard = Game().gameboardH;
+  const computer = Player('computer');
 
-    if (!action) return;
+  boards.insertAdjacentHTML(
+    'beforeend',
+    gameboardHTML(computerBoard.grid, 'computer')
+  );
+  boards.insertAdjacentHTML('beforeend', gameboardHTML(myBoard.grid));
+  content.appendChild(boards);
 
-    if (action.shipId) {
-      const targetShip = computerBoard.ships.find(
-        (s) => s.id === +action.shipId
-      );
-      targetShip.hit(action.shipHitIndex, action.shipId);
+  const ships = document.querySelectorAll('.grid-item[data-player="computer"]');
+  ships.forEach((ship, index) => {
+    ship.addEventListener('click', (e) => {
+      const row = e.target.parentElement.firstChild.textContent.toLowerCase();
+      const col = (index % 10) + 1;
+      const action = computerBoard.receiveAttack(row, col);
 
-      e.target.textContent = targetShip.ship[action.shipHitIndex - 1];
-      e.target.classList.add('hit');
+      if (!action) return;
 
-      if (computerBoard.allSunk(computerBoard.ships)) console.log('WINNER');
-    } else {
-      e.target.textContent = 'o';
-    }
+      if (action.shipId) {
+        const targetShip = computerBoard.ships.find(
+          (s) => s.id === +action.shipId
+        );
+        targetShip.hit(action.shipHitIndex, action.shipId);
 
-    const coords = computer.move();
-    const computerAction = myBoard.receiveAttack(coords.row, coords.col);
-    if (computerAction.shipId) {
-      const targetShip = myBoard.ships.find(
-        (s) => s.id === +computerAction.shipId
-      );
-      targetShip.hit(computerAction.shipHitIndex, computerAction.shipId);
-    }
-    boards.lastChild.remove();
-    boards.insertAdjacentHTML('beforeend', gameboardHTML(myBoard.grid));
-    if (myBoard.allSunk(myBoard.ships)) console.log('LOSER');
+        e.target.textContent = targetShip.ship[action.shipHitIndex - 1];
+        e.target.classList.add('hit');
+
+        if (computerBoard.allSunk(computerBoard.ships)) {
+          console.log('WINNER');
+          init();
+        }
+      } else {
+        e.target.textContent = 'o';
+      }
+
+      const coords = computer.move();
+      const computerAction = myBoard.receiveAttack(coords.row, coords.col);
+      if (computerAction.shipId) {
+        const targetShip = myBoard.ships.find(
+          (s) => s.id === +computerAction.shipId
+        );
+        targetShip.hit(computerAction.shipHitIndex, computerAction.shipId);
+      }
+      boards.lastChild.remove();
+      boards.insertAdjacentHTML('beforeend', gameboardHTML(myBoard.grid));
+      if (myBoard.allSunk(myBoard.ships)) {
+        console.log('LOSER');
+        init();
+      }
+    });
   });
-});
+};
+
+init();
 
 // ਨਿਰਵਾਣ ਬੱਲ نِروَاݨ بلّ
