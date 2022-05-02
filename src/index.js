@@ -23,6 +23,18 @@ content.classList.add('content');
 root.appendChild(content);
 
 /**
+ * WINNER
+ */
+const controls = document.createElement('div');
+controls.classList.add('controls');
+content.appendChild(controls);
+const winner = document.createElement('p');
+const button = document.createElement('button');
+button.textContent = 'play again';
+controls.appendChild(winner);
+controls.appendChild(button);
+
+/**
  * BOARDS
  */
 const boards = document.createElement('div');
@@ -30,10 +42,12 @@ boards.classList.add('boards');
 
 const init = () => {
   boards.innerHTML = '';
+  controls.style.display = 'none';
 
   const computerBoard = Game().gameboardC;
   const myBoard = Game().gameboardH;
   const computer = Player('computer');
+  const human = Player();
 
   boards.insertAdjacentHTML(
     'beforeend',
@@ -61,8 +75,8 @@ const init = () => {
         e.target.classList.add('hit');
 
         if (computerBoard.allSunk(computerBoard.ships)) {
-          console.log('WINNER');
-          init();
+          winner.textContent = human.player === 'human' ? 'You won' : '';
+          controls.style.display = 'block';
         }
       } else {
         e.target.textContent = 'o';
@@ -79,13 +93,15 @@ const init = () => {
       boards.lastChild.remove();
       boards.insertAdjacentHTML('beforeend', gameboardHTML(myBoard.grid));
       if (myBoard.allSunk(myBoard.ships)) {
-        console.log('LOSER');
-        init();
+        winner.textContent = `${computer.player} won`;
+        controls.style.display = 'block';
       }
     });
   });
 };
 
 init();
+
+button.addEventListener('click', init);
 
 // ਨਿਰਵਾਣ ਬੱਲ نِروَاݨ بلّ
