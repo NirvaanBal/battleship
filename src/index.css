@@ -1,11 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Radio+Canada');
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display');
 
 :root {
-  --text-color: #ebebeb;
-  --base-color: #004e98;
-  --primary-color: #ff6700;
-  --secondary-color: #3a6ea5;
-  --tertiary-color: #c0c0c0;
+  --text-color: lightblue;
+  --base-color: rgb(31, 31, 43);
+  --attack-color: red;
 }
 
 * {
@@ -16,7 +14,7 @@
 }
 
 html {
-  font-family: 'Radio Canada', sans-serif;
+  font-family: 'Major Mono Display', sans-serif;
 }
 
 body {
@@ -27,7 +25,6 @@ body {
 h1 {
   text-align: center;
   margin-top: 20px;
-  text-transform: uppercase;
   letter-spacing: 5px;
 }
 
@@ -44,6 +41,8 @@ table {
 
 tr:first-child > td {
   border: none;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 td {
@@ -51,12 +50,21 @@ td {
   width: 50px;
   height: 50px;
   text-align: center;
+  font-size: 30px;
+  text-transform: lowercase;
 }
 
 td.human {
   border: solid 7px var(--text-color);
 }
 
+td.hit {
+  border: solid 7px var(--attack-color);
+  color: var(--attack-color);
+}
+
 td:first-child {
   border: none;
+  font-size: 20px;
+  font-weight: bold;
 }

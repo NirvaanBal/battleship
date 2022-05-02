@@ -54,6 +54,7 @@ ships.forEach((ship, index) => {
       targetShip.hit(action.shipHitIndex, action.shipId);
 
       e.target.textContent = targetShip.ship[action.shipHitIndex - 1];
+      e.target.classList.add('hit');
 
       if (computerBoard.allSunk(computerBoard.ships)) console.log('WINNER');
     } else {
