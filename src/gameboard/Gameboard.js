@@ -14,9 +14,6 @@ const Gameboard = () => {
     '', '', '', '', '', '', '', '', '', '',
   ]; // prettier-ignore
 
-  // const flow = ['a', 'd'][Math.floor(Math.random() * 2)];
-  // let placeAt = Math.floor(Math.random() * grid.length);
-
   const ships = [];
 
   const place = (ship, direction, placeAt) => {
@@ -85,22 +82,6 @@ const Gameboard = () => {
     return grid;
   };
 
-  // const randomlyPlaceShips = () => {
-  //   [2, 3, 3, 4, 5].forEach((size) => {
-  //     let flow = ['a', 'd'][Math.floor(Math.random() * 2)];
-  //     let location = Math.floor(Math.random() * grid.length);
-
-  //     let placed = false;
-  //     while (placed === false) {
-  //       placed = place(Ship(size), flow, location);
-  //       flow = ['a', 'd'][Math.floor(Math.random() * 2)];
-  //       location = Math.floor(Math.random() * grid.length);
-  //     }
-  //   });
-
-  //   return true;
-  // };
-
   const receiveAttack = (row, col) => {
     if (updateRowToNumeral(row) === false || col > 10 || col < 1) return false;
     row = updateRowToNumeral(row);
@@ -127,15 +108,7 @@ const Gameboard = () => {
     };
   };
 
-  // ships array vartana
   const allSunk = (allShips) => {
-    // let counter = 0;
-    // grid.forEach((location) => {
-    //   if (location === 'x') counter += 1;
-    // });
-
-    // if (counter === 17) return true;
-    // return false;
     const totalShips = ships.length;
     let counter = 0;
     allShips.forEach((ship) => {
@@ -149,7 +122,6 @@ const Gameboard = () => {
   return {
     grid,
     place,
-    // randomlyPlaceShips,
     receiveAttack,
     allSunk,
     ships,
