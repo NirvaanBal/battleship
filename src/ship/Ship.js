@@ -12,7 +12,10 @@ const Ship = (length = 2) => {
     return ship;
   };
 
-  const isSunk = () => (hitCounter === length ? true : false);
+  const isSunk = (shipId) => {
+    if (+shipId === id && hitCounter === length) return true;
+    return false;
+  };
 
   return {
     id,
