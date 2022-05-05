@@ -1,6 +1,7 @@
 const gameboardHTML = (board, player = 'human') => {
   let boardHTML = `
     <table>
+    <caption>${player} ships</caption>
       <tr>
         <td></td>
         <td>1</td>

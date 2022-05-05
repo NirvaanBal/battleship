@@ -39,6 +39,11 @@ table {
   border-collapse: collapse;
 }
 
+caption {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
 tr:first-child > td {
   border: none;
 }
@@ -52,6 +57,10 @@ td {
   font-size: 15px;
   text-transform: lowercase;
   font-weight: bold;
+}
+
+td[data-player='computer']:hover {
+  border: solid 2px var(--attack-color);
 }
 
 td.human {
@@ -71,7 +80,7 @@ td:first-child {
 .controls {
   font-weight: bold;
   text-align: center;
-  margin: 20px 0;
+  margin-top: 15px;
   display: none;
 }
 
