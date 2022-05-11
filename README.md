@@ -1,6 +1,6 @@
 # Battleship
 
-An over-engineered version of a simple pen and paper game; Battleship.
+An over-engineered version of a simple pen and paper game; Battleship. [Live here](https://nirvaanbal.github.io/battleship/).
 
 ## Features
 
