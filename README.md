@@ -10,8 +10,8 @@ An over-engineered version of a simple pen and paper game; Battleship. [Live her
 - Left grid belongs to the computer and right to the human 🦸‍♂️
 - User ships are marked with light blue by default 🔵
 - Computer ships will be marked 'red' on a hit 🔴
-- O - hit 💯
-- X - miss 🤕
+- O - miss 🤕
+- X - hit 💯
 
 ## Tech Stack
 
@@ -20,6 +20,10 @@ An over-engineered version of a simple pen and paper game; Battleship. [Live her
 - Webpack
 - CSS
 - ESLint
+
+## Raison d'être
+
+Learning how to build a project using Test Driven Development(TDD) first approach.
 
 ## Bibliography
 
